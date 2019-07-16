@@ -29,7 +29,7 @@ class Map
     def has_key?(key)
         @underlying_array.each do |pair| 
             if key == pair[0]
-                return false
+                return true
             end 
         end
 
