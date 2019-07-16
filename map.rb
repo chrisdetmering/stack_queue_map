@@ -5,10 +5,13 @@ class Map
 
     def set(key, value)
         
-        
-        @underlying_array.each do |pair| 
+        if has_key?
             
-        end 
+            update_value(key, value)
+        else
+            
+            @underlying_array.push([key, value])
+        end
 
     end 
      
@@ -35,4 +38,15 @@ class Map
 
         false 
     end
+
+    def update_value(key, value) 
+       
+        @underlying_array.each do |pair| 
+            if key == pair[0]
+                pair[1] = value
+            end 
+        end
+    end 
+
+
 end 
