@@ -4,24 +4,36 @@ class Map
     end 
 
     def set(key, value)
-        
-        if has_key?
+        pair = find_pair(key)
+
+        if pair 
             
-            update_value(key, value)
+            pair[1] = value
         else
             
-            @underlying_array.push([key, value])
+            @underlying_array.push([key, pair])
         end
 
     end 
      
     def get(key)
+        pair = find_pair(key)
+        value = pair[1]
+
+        return value
     end 
 
     def delete(key)
+        pair = find_pair(key)
+        value = pair[1]
+
+       @underlying_array.delete(pair)
+
+       return value
     end 
 
     def show 
+       return underlying_array
     end 
 
     
@@ -29,24 +41,15 @@ class Map
 
     attr_reader :underlying_array
 
-    def has_key?(key)
+    def find_pair(key)
         @underlying_array.each do |pair| 
             if key == pair[0]
-                return true
+                return pair
             end 
         end
 
-        false 
+        nil
     end
-
-    def update_value(key, value) 
-       
-        @underlying_array.each do |pair| 
-            if key == pair[0]
-                pair[1] = value
-            end 
-        end
-    end 
 
 
 end 
