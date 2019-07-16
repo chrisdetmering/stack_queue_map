@@ -11,7 +11,7 @@ class Map
             pair[1] = value
         else
             
-            @underlying_array.push([key, pair])
+            underlying_array.push([key, value])
         end
 
     end 
@@ -27,13 +27,14 @@ class Map
         pair = find_pair(key)
         value = pair[1]
 
-       @underlying_array.delete(pair)
+       underlying_array.delete(pair)
 
        return value
     end 
 
     def show 
-       return underlying_array
+       print underlying_array
+       puts
     end 
 
     
@@ -42,14 +43,17 @@ class Map
     attr_reader :underlying_array
 
     def find_pair(key)
-        @underlying_array.each do |pair| 
-            if key == pair[0]
-                return pair
-            end 
-        end
-
+        underlying_array.each { |pair| return pair if pair[0] == key } 
         nil
     end
 
 
 end 
+
+
+my_map = Map.new
+
+my_map.set(1, 2)
+my_map.set(2, 5)
+
+my_map.show
